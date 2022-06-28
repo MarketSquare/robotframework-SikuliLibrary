@@ -56,7 +56,7 @@ class SikuliLibrary(object):
             self.start_sikuli_process()
             self._stop_thread(4)
         elif mode.upper().strip() == 'PYTHON':
-            pass
+            self.connect_sikuli_process(port)
         elif mode.upper().strip() == 'CREATE':
             self._create_keywords_file()
         elif mode.upper().strip() != 'NEW':
@@ -90,6 +90,10 @@ class SikuliLibrary(object):
             break
         if not started:
             raise RuntimeError('Start sikuli java process failed!')
+        self.remote = self._connect_remote_library()
+
+    def connect_sikuli_process(self, port):
+        self.port = port
         self.remote = self._connect_remote_library()
 
     def _create_keywords_file(self):
@@ -244,10 +248,10 @@ class SikuliLibrary(object):
             return self.remote.get_keyword_documentation(name)
         return KEYWORDS[name]['doc']
 
-    def run_keyword(self, name, arguments=[], kwargs={}):
+    def run_keyword(self, name, arguments=[]):
         if name == 'start_sikuli_process':
             return self.start_sikuli_process(*arguments)
-        return self.remote.run_keyword(name, arguments, kwargs)
+        return self.remote.run_keyword(name, arguments, None)
 
     def _stop_thread(self, timeout):
         def stop():

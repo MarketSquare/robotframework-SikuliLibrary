@@ -1,20 +1,19 @@
 package com.github.rainmanwy.robotframework.sikulilib;
 
-import org.robotframework.javalib.library.RobotJavaLibrary;
+import org.robotframework.javalib.library.RobotFrameworkDynamicAPI;
 import org.robotframework.javalib.library.KeywordDocumentationRepository;
 import org.robotframework.javalib.library.AnnotationLibrary;
 import org.robotframework.remoteserver.RemoteServer;
 
 import com.github.rainmanwy.robotframework.sikulilib.utils.CaptureFolder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Wang Yang on 2015/8/19.
  */
-public class SikuliLibrary implements KeywordDocumentationRepository, RobotJavaLibrary {
+public class SikuliLibrary implements KeywordDocumentationRepository, RobotFrameworkDynamicAPI {
 
     private final AnnotationLibrary annotationLibrary = new AnnotationLibrary("com/github/rainmanwy/robotframework/sikulilib/keywords/**/*.class");
 
@@ -26,41 +25,27 @@ public class SikuliLibrary implements KeywordDocumentationRepository, RobotJavaL
             CaptureFolder.getInstance().setCaptureFolder(args[1]);
         }
         RemoteServer.configureLogging();
-        RemoteServer server = new RemoteServer();
-//        server.addLibrary(SikuliLibrary.class, Integer.parseInt(args[0]));
+        RemoteServer server = new RemoteServer(Integer.parseInt(args[0]));
         server.putLibrary("/", new SikuliLibrary());
-        server.setPort(Integer.parseInt(args[0]));
         server.start();
     }
 
     @Override
-    public Object runKeyword(String keywordName, Object[] args)
+    public Object runKeyword(String keywordName, List args)
     {
-        return this.annotationLibrary.runKeyword(keywordName, toStrings(args));
+        return this.annotationLibrary.runKeyword(keywordName, args);
     }
 
     @Override
-    public String[] getKeywordNames()
+    public Object runKeyword(String keywordName, List args, Map kwargs)
     {
-        return  this.annotationLibrary.getKeywordNames();
+        return this.annotationLibrary.runKeyword(keywordName, args, kwargs);
     }
 
-    private Object[] toStrings(Object[] args) {
-        System.out.println("Params: " + Arrays.toString(args));
-        Object[] newArgs = new Object[args.length];
-        for (int i = 0; i < newArgs.length; i++) {
-            if (args[i].getClass().isArray()) {
-                List<Object> newList = new ArrayList<Object>(((Object[])args[i]).length);
-                for (Object o : (Object[])args[i]) {
-                    newList.add(o);
-                }
-                newArgs[i] = newList;
-            }
-            else {
-                newArgs[i] = args[i].toString();
-            }
-        }
-        return newArgs;
+    @Override
+    public List<String> getKeywordNames()
+    {
+        return  this.annotationLibrary.getKeywordNames();
     }
 
     @Override
@@ -69,7 +54,7 @@ public class SikuliLibrary implements KeywordDocumentationRepository, RobotJavaL
     }
 
     @Override
-    public String[] getKeywordArguments(String name) {
+    public List<String> getKeywordArguments(String name) {
         return this.annotationLibrary.getKeywordArguments(name);
     }
 }
