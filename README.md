@@ -22,15 +22,16 @@ Before using this library, please check [doc of sikulix](https://sikulix-2014.re
 
 ## Overview
 ![](https://github.com/MarketSquare/robotframework-SikuliLibrary/blob/master/docs/img/architecture.png "architecture")
-* This library is implemented with [Robot Framework Remote Library](https://code.google.com/p/robotframework/wiki/RemoteLibrary)
+* This library is implemented with [Robot Framework Remote Interface](https://github.com/robotframework/RemoteInterface)
 * Sikuli api is encapsulated as Robot keywords, and explored to clients with [jrobotremoteserver](https://github.com/robotframework/jrobotremoteserver)
-* Client is implemented with python and use Robot remote library to communicate with server side
-* Users could implement their own clients with different languages which support xml rpc
+* Client is implemented with python and use [Robot Framework Remote Library](https://github.com/robotframework/PythonRemoteServer) to communicate with server side
+* Users could implement their own clients with different languages which support XML RPC
 
 
 ## Keyword Documentation
 
 Here is a list of the available [Keywords :full_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html) | [Keywords :new_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary_dark.html).
+
 Previous version, [2.0.3 :full_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary_2.0.3.html).
 
 # Getting Started 
@@ -83,9 +84,9 @@ pip install ./robotframework_sikulilibrary-2.0.5-py3-none-any.whl
 ```
 
 ### Note
-* For Linux, there are some dependencies need be installed, please check [sikuli quick start](http://www.sikulix.com/specials/files/linux-setup-prerequisites.html) to get more details.
+* For Linux, there are some dependencies that needs to be installed, please check [sikuli quick start](http://www.sikulix.com/specials/files/linux-setup-prerequisites.html) to get more details.
 * Python should be installed as maven will execute python command
-* OS should allow java process access Internet
+* OS should allow Java process access Internet
 
 # Writing your first test
 
@@ -192,7 +193,7 @@ Library        Remote        http://<ip>:<port>/
 ```
 
 ## "NEW" mode
-* By default, SikuliLibrary will start Sikuli Java process implicitly when library is initializing by Robot Framework. This behavior bring some problems.
+* By default, SikuliLibrary will start Sikuli Java process implicitly when library is initializing by Robot Framework. This behavior brings some problems.
 * Now with **"NEW"** mode, user could use keyword [Start Sikuli Process](http://MarketSquare.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html#Start%20Sikuli%20Process) to start the process explicitly.
 You may check the detail in [issue 16](https://github.com/MarketSquare/robotframework-SikuliLibrary/issues/16)
 * Example:
