@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation     Sikuli Library Click In Example
 Test Setup        Add Needed Image Path
-Test Teardown     Stop Remote Server
+Test Teardown     Run Keywords    Terminate All Processes    Stop Remote Server
 Library           SikuliLibrary
-Library           OperatingSystem
+Library           Process
 
 *** Variables ***
 ${IMAGE_DIR}      ${CURDIR}/img
@@ -19,11 +19,11 @@ Add Needed Image Path
     Add Image Path    ${IMAGE_DIR}
 
 Open Example UI
-    Run         firefox ${CURDIR}/html/click_in_demo.html
-    Wait Until Screen Contain         right_area.png        10
+    Start Process    firefox    ${CURDIR}/html/click_in_demo.html
+    Wait Until Screen Contain    right_area.png    10
 
 Click Right OK Button
-    Click In        right_area.png      target.png
+    Click In    right_area.png    target.png
 
 Click Left OK Button
-    Click In        left_area.png      target.png
+    Click In    left_area.png    target.png
