@@ -9,4 +9,5 @@ mvn package
 if [[ $? -eq 0 ]];
 then
     pip wheel .
+    libdoc --theme DARK build/lib/SikuliLibrary docs/SikuliLibrary_2.0.5_dark.html
 fi
