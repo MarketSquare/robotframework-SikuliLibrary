@@ -277,4 +277,4 @@ Setting UAC to the lowest level (not to notify the user) will reduce the instanc
 
 ## Robot Framework Community - MarketSquare
 
-This project was created by ![rainmanwy](https://github.com/rainmanwy) and is maintained by the Robot Framework Community at ![MarketSquare](https://marketsquare.github.io/index.html) since May, 2025.
+This project was created by [rainmanwy](https://github.com/rainmanwy) and is maintained by the Robot Framework Community at [MarketSquare](https://marketsquare.github.io/index.html) since May, 2025.
