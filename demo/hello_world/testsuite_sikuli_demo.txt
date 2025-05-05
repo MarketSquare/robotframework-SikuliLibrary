@@ -5,7 +5,7 @@ Test Teardown     Stop Remote Server
 Library           SikuliLibrary
 
 *** Variables ***
-${IMAGE_DIR}      ${CURDIR}\\img
+${IMAGE_DIR}      ${CURDIR}/img
 
 *** Test Cases ***
 Windows Notepad Hello World

@@ -13,22 +13,26 @@ Before using this library, please check [doc of sikulix](https://sikulix-2014.re
 |  SikuliLibrary          |  sikulixapi   |
 |  ---                    |  ---          |
 |  master                 |  2.0.5        |
+|  2.0.5                  |  2.0.5        |
+|  2.0.3                  |  2.0.4        |
 |  2.0.0                  |  2.0.4        |
 |  1.0.8                  |  2.0.1        |
 
 
 
 ## Overview
-![](https://github.com/rainmanwy/robotframework-SikuliLibrary/blob/master/docs/img/architecture.png "architecture")
-* This library is implemented with [Robot Framework Remote Library](https://code.google.com/p/robotframework/wiki/RemoteLibrary)
-* Sikuli api is encapsulated as Robot keywords, and explored to clients with [jrobotremoteserver](https://github.com/ombre42/jrobotremoteserver)
-* Client is implemented with python and use Robot remote library to communicate with server side
-* Users could implement their own clients with different languages which support xml rpc
+![](https://github.com/MarketSquare/robotframework-SikuliLibrary/blob/master/docs/img/architecture.png "architecture")
+* This library is implemented with [Robot Framework Remote Interface](https://github.com/robotframework/RemoteInterface)
+* Sikuli api is encapsulated as Robot keywords, and explored to clients with [jrobotremoteserver](https://github.com/robotframework/jrobotremoteserver)
+* Client is implemented with python and use [Robot Framework Remote Library](https://github.com/robotframework/PythonRemoteServer) to communicate with server side
+* Users could implement their own clients with different languages which support XML RPC
 
 
 ## Keyword Documentation
 
-Here is a list of the available [Keywords](http://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html)
+Here is a list of the available [Keywords :full_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary.html) | [Keywords :new_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary_dark.html).
+
+Previous version, [2.0.3 :full_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary_2.0.3.html).
 
 # Getting Started 
 
@@ -37,11 +41,11 @@ This guide will take you through setting up Robot Framework with Sikuli Library,
 
 ## Step 1: Install the basic components
 
-Make sure you have at least java 8 installed, python 2.x or 3.x and [pip](https://pypi.org/project/pip/)  
+Make sure you have at least Java 11 installed, and Python 3.8 to 3.13, and [pip](https://pypi.org/project/pip/)  
 
 Run the command line below to check the currently version that you have installed:
 
-To check java version:  ```java -version```
+To check java version:  ``` java -version ```
 
 To check python version: ``` python --version ```
 
@@ -59,24 +63,30 @@ And then install the library
 pip install robotframework-SikuliLibrary
 ```
 
-* If target OS is Linux, please download linux version from [pypi](https://pypi.python.org/pypi/robotframework-SikuliLibrary)
-* Note: pypi version may not latest version, if you want to use latest version, please check "Build With Maven"
+* You can see SikuliLibrary project at [PyPi page](https://pypi.python.org/pypi/robotframework-SikuliLibrary)
 
-
-## Other options for Linux users
+## Building SikuliLibrary
 
 ### Build With Maven
-* Clone this project, and execute maven package command
-* One zip file will be created in "target" folder, could unzip this file and add to PYTHONPATH
-* If want to installed to python, please execute
+* Make sure you have Java configured (for example):
 ```
-python setup.py install
+export JAVA_HOME=/usr/lib/jvm/java
+```
+* Clone this project, and execute the commands:
+```
+mvn package
+```
+* One zip archive will be created in "target" folder, you can unzip this file and add to PYTHONPATH
+* To install with Python, you create a wheel package and then install:
+```
+pip wheel .
+pip install ./robotframework_sikulilibrary-2.0.5-py3-none-any.whl
 ```
 
 ### Note
-* For Linux, there are some dependencies need be installed, please check [sikuli quick start](http://www.sikulix.com/specials/files/linux-setup-prerequisites.html) to get more details.
+* For Linux, there are some dependencies that needs to be installed, please check [sikuli quick start](http://www.sikulix.com/specials/files/linux-setup-prerequisites.html) to get more details.
 * Python should be installed as maven will execute python command
-* OS should allow java process access Internet 
+* OS should allow Java process access Internet
 
 # Writing your first test
 
@@ -92,7 +102,7 @@ Library           SikuliLibrary
 ${IMAGE_DIR}      ${CURDIR}\\img
 
 *** Test Cases ***
-Windows Notpad Hellow World
+Windows Notepad Hello World
     Open Windows Start Menu
     Open Notepad
     Input In Notepad
@@ -168,14 +178,14 @@ client.call("run_keyword", "click", ["close.png"])
 
 
 
-# Advance Options
+# Advanced Options
 
 ## Start Server Manually
 SikuliLibrary contains a standalone jar file which could be started in command line. Sometimes user want to do test on different OS. The steps are:
 * Find SikuliLibrary.jar in "SikuliLibrary/lib" folder and upload to target OS.
 * Start jar with command
 ```
-java -jar SikuliLibrary.jar  <port>  <captured_imagine_folder>
+java -jar SikuliLibrary.jar  <port>  <captured_images_folder>
 ```
 * User could use different clients to connect to server and call keywords. For example [Remote Library](https://github.com/robotframework/RemoteInterface) in robot framework.
 ```
@@ -183,9 +193,9 @@ Library        Remote        http://<ip>:<port>/
 ```
 
 ## "NEW" mode
-* By default, SikuliLibrary will start sikuli java process implicitly when library is initializing by Robot Framework. This behavior bring some problems.
-* Now with **"NEW"** mode, user could use keyword [Start Sikuli Process](http://rainmanwy.github.io/robotframework-SikuliLibrary/doc/SikuliLibrary.html#Start%20Sikuli%20Process) to start the process explicitly.
-You may check the detail in [issue 16](https://github.com/rainmanwy/robotframework-SikuliLibrary/issues/16)
+* By default, SikuliLibrary will start Sikuli Java process implicitly when library is initializing by Robot Framework. This behavior brings some problems.
+* Now with **"NEW"** mode, user could use keyword [Start Sikuli Process](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary.html#Start%20Sikuli%20Process) to start the process explicitly.
+You may check the detail in [issue 16](https://github.com/MarketSquare/robotframework-SikuliLibrary/issues/16)
 * Example:
 ```
 *** Settings ***
@@ -213,7 +223,7 @@ java -jar SikuliLibrary.jar 10000 .
 ```
 
 ## Disable Java Process Log File
-Could configure environment variable *DISABLE_SIKULI_LOG* to disable create log files
+You can configure environment variable *DISABLE_SIKULI_LOG* to disable create log files
 ```
 Linux: export DISABLE_SIKULI_LOG=yes
 ```
@@ -251,7 +261,7 @@ Setting UAC to the lowest level (not to notify the user) will reduce the instanc
               }
           }
   ```
-* Keyword to handel similiar images issue, could check "click_in" test suite in demo folder to get details
+* Keyword to handle similiar images issue, could check "click_in" test suite in demo folder to get details
   ```java
      public void clickIn(String areaImage, String targetImage) throws Exception {
          wait(areaImage, Double.toString(this.timeout));
@@ -262,5 +272,9 @@ Setting UAC to the lowest level (not to notify the user) will reduce the instanc
      }
   ```
 * Operating images could be shown in robot logs, easy to troubleshooting
-![](https://github.com/rainmanwy/robotframework-SikuliLibrary/blob/master/docs/img/log.png "log")
+![](https://github.com/MarketSquare/robotframework-SikuliLibrary/blob/master/docs/img/log.png "log")
 
+
+## Robot Framework Community - MarketSquare
+
+This project was created by ![rainmanwy](https://github.com/rainmanwy/robotframework-SikuliLibrary/) and is maintained by the Robot Framework Community at ![MarketSquare](https://marketsquare.github.io/) since May, 2025.
