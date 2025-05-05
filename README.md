@@ -30,9 +30,9 @@ Before using this library, please check [doc of sikulix](https://sikulix-2014.re
 
 ## Keyword Documentation
 
-Here is a list of the available [Keywords :full_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary.html) | [Keywords :new_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary_dark.html).
+Here is a list of the available [Keywords :full_moon_with_face:](http://marketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary.html) | [Keywords :new_moon_with_face:](http://marketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary_dark.html).
 
-Previous version, [2.0.3 :full_moon_with_face:](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary_2.0.3.html).
+Previous version, [2.0.3 :full_moon_with_face:](http://marketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary_2.0.3.html).
 
 # Getting Started 
 
@@ -194,7 +194,7 @@ Library        Remote        http://<ip>:<port>/
 
 ## "NEW" mode
 * By default, SikuliLibrary will start Sikuli Java process implicitly when library is initializing by Robot Framework. This behavior brings some problems.
-* Now with **"NEW"** mode, user could use keyword [Start Sikuli Process](http://MarketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary.html#Start%20Sikuli%20Process) to start the process explicitly.
+* Now with **"NEW"** mode, user could use keyword [Start Sikuli Process](http://marketSquare.github.io/robotframework-SikuliLibrary/docs/SikuliLibrary.html#Start%20Sikuli%20Process) to start the process explicitly.
 You may check the detail in [issue 16](https://github.com/MarketSquare/robotframework-SikuliLibrary/issues/16)
 * Example:
 ```
@@ -277,4 +277,4 @@ Setting UAC to the lowest level (not to notify the user) will reduce the instanc
 
 ## Robot Framework Community - MarketSquare
 
-This project was created by ![rainmanwy](https://github.com/rainmanwy/robotframework-SikuliLibrary/) and is maintained by the Robot Framework Community at ![MarketSquare](https://marketsquare.github.io/) since May, 2025.
+This project was created by ![rainmanwy](https://github.com/rainmanwy) and is maintained by the Robot Framework Community at ![MarketSquare](https://marketsquare.github.io/index.html) since May, 2025.
