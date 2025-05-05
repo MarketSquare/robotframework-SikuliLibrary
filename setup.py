@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Created on 2015/12/10
 
@@ -9,35 +10,41 @@ from os.path import abspath, dirname, join
 with open(join(dirname(abspath(__file__)), 'target', 'src', 'SikuliLibrary', 'version.py')) as f:
     exec(f.read())
 
+with open("README.md", encoding="utf-8") as f:
+    long_description = f.read()
 
-DESCRIPTION = """
-Sikuli Robot Framework Library provide keywords for Robot Framework to test UI through Sikuli.
+DESCRIPTION = "Sikuli Robot Framework Library provide keywords for Robot Framework to test UI through Sikuli."
 
-Notes: SikuliLibrary.jar file is OS dependent. The version for Windows 64bit is included.
-If target OS is not Windows, please get source code from GITHUB, and use Maven to build
-SikuliLibrary.jar on target OS, and replace the jar file in 'lib' folder.
-"""[1:-1]
-CLASSIFIERS = """
-Operating System :: OS Independent
-Programming Language :: Python
-Programming Language :: Java
-Topic :: Software Development :: Testing
-"""[1:-1]
+setup_kwargs = {
+    "name": "robotframework-SikuliLibrary",
+    "version": VERSION,
+    "description": DESCRIPTION,
+    "long_description": long_description,
+    "long_description_content_type": "text/markdown",
+    "author": "Wang Yang",
+    "author_email": "wang_yang1980@hotmail.com",
+    "maintainer": "Hélio Guilherme",
+    "maintainer_email": "helioxentric@gmail.com",
+    "url": "https://github.com/MarketSquare/robotframework-SikuliLibrary",
+    "license": "Apache-2.0",
+    "keywords": "robotframework testing testautomation sikuli UI",
+    "platforms": "any",
+    "package_dir": {"" : "target/src"},
+    "packages": ["SikuliLibrary"],
+    "package_data": {"SikuliLibrary": ["lib/*.jar",]},
+    "python_requires": ">=3.8,<4.0",
+    "classifiers": [
+        "Development Status :: 5 - Production/Stable",
+        "Operating System :: OS Independent",
+        "Programming Language :: Java",
+        "Programming Language :: Python :: 3",
+        "Topic :: Software Development :: Testing",
+        "Framework :: Robot Framework",
+        "Framework :: Robot Framework :: Library",
+    ],
+    "include_package_data": True
+}
 
-setup(name         = 'robotframework-SikuliLibrary',
-      version      = VERSION,
-      description  = 'Sikuli library for Robot Framework',
-      long_description = DESCRIPTION,
-      author       = 'Wang Yang',
-      author_email = 'wang_yang1980@hotmail.com',
-      # url          = 'https://github.com/rainmanwy/robotframework-SikuliLibrary',
-      url          = 'https://github.com/MarketSquare/robotframework-SikuliLibrary',
-      license      = 'Apache License 2.0',
-      keywords     = 'robotframework testing testautomation sikuli UI',
-      platforms    = 'any',
-      classifiers  = CLASSIFIERS.splitlines(),
-      package_dir  = {'' : 'target/src'},
-      packages     = ['SikuliLibrary'],
-      package_data = {'SikuliLibrary': ['lib/*.jar',
-                                          ]},
-      )
+
+setup(**setup_kwargs)
+
