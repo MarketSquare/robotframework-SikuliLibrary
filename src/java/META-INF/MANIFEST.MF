@@ -1,2 +1,3 @@
 Manifest-Version: 1.0
 Main-Class: com.github.rainmanwy.robotframework.sikulilib.SikuliLibrary
+Enable-Native-Access: ALL-UNNAMED

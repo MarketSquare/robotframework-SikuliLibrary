@@ -8,8 +8,9 @@ Open Image
     END
 
 *** Settings ***
+Suite Setup       Start Sikuli Process
 Suite Teardown    Stop Remote Server
-Library           SikuliLibrary
+Library           SikuliLibrary    mode=NEW
 Library           Process
 
 *** Test Cases ***
