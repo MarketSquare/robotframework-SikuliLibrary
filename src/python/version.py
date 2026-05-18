@@ -3,4 +3,4 @@ Created on 2015/12/10
 
 Author: by wang_yang1980@hotmail.com
 '''
-VERSION = '2.0.5'
+VERSION = '2.0.6'
